@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Bruno Miranda — Cronograma de Aplicação MBA (2026–2027)</title>
+<!-- Anti-flash: set theme before body renders -->
+<script>
+(function(){
+  var THEME_KEY = 'bruno-cronograma-theme';
+  var saved = null;
+  try { saved = localStorage.getItem(THEME_KEY); } catch(e){}
+  var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
+<style>
+  :root{
+    --ink:#1d1d1f; --muted:#6b6b70; --line:#e2e2e6; --rule:#cfcfd4;
+    --test:#e07a5f; --found:#3d5a80; --rec:#8d6b94; --essay:#2a9d8f;
+    --intv:#e9c46a; --post:#7a8290;
+    --done-label:#aaa; --done-bar:0.42; --done-tint:#e8f5e9;
+    --progress-fill:#2a9d8f; --today-line:#d62828;
+    --gridline:#ededf1;
+    --surface:#ffffff;
+    --surface-alt:#f4f4f6;
+    --note-bg:#fff8e6; --note-border:#f0d98a; --note-text:#7a5b00;
+    --table-head:#f4f4f6;
+    --btn-bg:#ffffff;
+    --btn-hover-bg:#f4f4f6;
+    --btn-hover-ink:var(--ink);
+    --track-bg:transparent;
+    --tab-active-bg:#ffffff;
+    --tab-active-border:var(--ink);
+    --tab-inactive-bg:#f4f4f6;
+    --tab-inactive-ink:var(--muted);
+    --meeting-card-bg:#f9f9fb;
+    --meeting-card-border:#e2e2e6;
+    --meeting-decision-bg:#eaf5f0;
+    --meeting-decision-border:#b8dece;
+    --meeting-decision-ink:#1a6645;
+  }
+
+  @media screen {
+    :root[data-theme="dark"]{
+      --ink:#e7e7ea; --muted:#a0a0a8; --line:#3a3a40; --rule:#4a4a52;
+      --test:#e07a5f; --found:#5b85b8; --rec:#a885b0; --essay:#2bbdad;
+      --intv:#e9c46a; --post:#9aa0ac;
+      --done-label:#666672; --done-bar:0.5; --done-tint:#1e2e1e;
+      --progress-fill:#2bbdad; --today-line:#ff5555;
+      --gridline:#2e2e36;
+      --surface:#1e1e24; --surface-alt:#28282e;
+      --note-bg:#2a2410; --note-border:#6b560e; --note-text:#d4a820;
+      --table-head:#28282e;
+      --btn-bg:#28282e;
+      --btn-hover-bg:#35353e;
+      --btn-hover-ink:#e7e7ea;
+      --track-bg:#24242c;
+      --tab-active-bg:#1e1e24;
+      --tab-active-border:#e7e7ea;
+      --tab-inactive-bg:#28282e;
+      --tab-inactive-ink:#a0a0a8;
+      --meeting-card-bg:#24242c;
+      --meeting-card-border:#3a3a40;
+      --meeting-decision-bg:#1a2e25;
+      --meeting-decision-border:#2a5540;
+      --meeting-decision-ink:#6ecba0;
+    }
+  }
+
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       color:var(--ink);background:var(--surface);max-width:1100px;margin:22px auto;padding:0 26px;line-height:1.4}
+  h1{font-size:21px;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 18px}
+  h2{font-size:15px;margin:24px 0 8px;border-bottom:2px solid var(--ink);padding-bottom:3px}
+  .note{background:var(--note-bg);border:1px solid var(--note-border);border-radius:8px;
+        padding:10px 14px;font-size:13px;margin:8px 0 4px}
+  .note b{color:var(--note-text)}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;color:var(--ink)}
+  th{background:var(--table-head)}
+  .tbd{color:#b8860b;font-weight:600}
+  .out{color:#a33;text-decoration:line-through}
+
+  /* Progress bar */
+  .progress-wrap{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:13px;color:var(--muted)}
+  .progress-bar-outer{flex:1;height:6px;background:var(--line);border-radius:3px;max-width:260px}
+  .progress-bar-inner{height:6px;background:var(--progress-fill);border-radius:3px;
+                      transition:width .25s ease}
+  .reset-btn{font-size:12px;padding:3px 10px;border:1px solid var(--rule);border-radius:5px;
+             background:var(--btn-bg);color:var(--muted);cursor:pointer}
+  .reset-btn:hover{background:var(--btn-hover-bg);color:var(--btn-hover-ink)}
+  .theme-btn{font-size:12px;padding:3px 10px;border:1px solid var(--rule);border-radius:5px;
+             background:var(--btn-bg);color:var(--muted);cursor:pointer;margin-left:auto}
+  .theme-btn:hover{background:var(--btn-hover-bg);color:var(--btn-hover-ink)}
+
+  /* Tab nav */
+  .tab-nav{display:flex;gap:0;margin:0 0 0;border-bottom:2px solid var(--line)}
+  .tab-btn{
+    padding:7px 20px;font-size:13px;font-weight:600;cursor:pointer;
+    border:1px solid transparent;border-bottom:none;border-radius:6px 6px 0 0;
+    background:var(--tab-inactive-bg);color:var(--tab-inactive-ink);
+    margin-bottom:-2px;transition:background .15s,color .15s;
+  }
+  .tab-btn.active{
+    background:var(--tab-active-bg);color:var(--ink);
+    border-color:var(--line);border-bottom-color:var(--tab-active-bg);
+    border-bottom:2px solid var(--tab-active-bg);
+    position:relative;z-index:1;
+  }
+  .tab-btn:hover:not(.active){background:var(--btn-hover-bg);color:var(--btn-hover-ink)}
+
+  /* Tab panels */
+  .tab-panel{display:none;padding-top:18px}
+  .tab-panel.active{display:block}
+
+  /* Legend */
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:6px 0 10px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .chip{width:13px;height:13px;border-radius:3px;display:inline-block}
+
+  /* Gantt */
+  .gantt{font-size:12px;margin-top:6px}
+  /* chart-body is relative so today-marker and rows share the same offset system */
+  .chart-body{position:relative}
+
+  .today-marker{
+    position:absolute;
+    /* left is relative to the track column only. We use CSS calc over the full row width:
+       200px label + (7.4% of the remaining 1fr). Expressed as a calc of the container:
+       left = 200px + 0.074 * (100% - 200px) */
+    left:calc(200px + 0.074 * (100% - 200px));
+    top:0;bottom:0;width:2px;background:var(--today-line);
+    pointer-events:none;z-index:10;
+  }
+  .today-marker::before{
+    content:"Hoje · 19/06";
+    position:absolute;top:-1px;left:4px;
+    font-size:10px;font-weight:700;color:var(--today-line);
+    white-space:nowrap;line-height:1.2;
+  }
+
+  .grow{display:grid;grid-template-columns:200px 1fr;align-items:center;min-height:28px;
+        position:relative;}
+  .glabel{padding-right:10px;color:var(--ink);font-weight:500;
+          display:flex;align-items:center;gap:6px;font-size:12px}
+  .glabel input[type=checkbox]{
+    width:14px;height:14px;flex-shrink:0;cursor:pointer;accent-color:var(--progress-fill);
+    margin:0;
+  }
+  .label-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ghead .glabel{color:transparent}
+  .track{position:relative;height:22px;border-radius:3px;
+    background-color:var(--track-bg);
+    background-image:linear-gradient(to right,
+      transparent 0 12.3%, var(--gridline) 12.3% calc(12.3% + 1px),
+      transparent calc(12.3% + 1px) 25%, var(--gridline) 25% calc(25% + 1px),
+      transparent calc(25% + 1px) 37.7%, var(--gridline) 37.7% calc(37.7% + 1px),
+      transparent calc(37.7% + 1px) 50%, var(--gridline) 50% calc(50% + 1px),
+      transparent calc(50% + 1px) 62.7%, var(--gridline) 62.7% calc(62.7% + 1px),
+      transparent calc(62.7% + 1px) 75%, var(--gridline) 75% calc(75% + 1px),
+      transparent calc(75% + 1px) 87.7%, var(--gridline) 87.7% calc(87.7% + 1px),
+      transparent calc(87.7% + 1px) 100%);}
+  .months{position:relative;height:20px}
+  .months span{position:absolute;font-size:11px;color:var(--muted);font-weight:600;transform:translateX(2px)}
+  .bar{position:absolute;top:3px;height:16px;border-radius:8px;color:#fff;font-size:10.5px;
+       line-height:16px;padding:0 7px;white-space:nowrap;overflow:visible;
+       transition:opacity .2s}
+  .bar .done-check{display:none;margin-left:4px;font-size:10px}
+  .flag{position:absolute;top:-1px;font-size:11px;color:var(--ink);font-weight:700;transform:translateX(-3px)}
+  .flag small{font-weight:600;color:var(--muted)}
+
+  /* Done state */
+  .grow.done .label-text{text-decoration:line-through;color:var(--done-label)}
+  .grow.done .bar{opacity:var(--done-bar);background-color:var(--done-tint) !important;
+                  color:#555 !important;box-shadow:inset 0 0 0 1px #aaa}
+  .grow.done .bar .done-check{display:inline}
+  .grow.done .flag{opacity:0.4}
+
+  /* Meeting cards */
+  .meeting-card{
+    background:var(--meeting-card-bg);
+    border:1px solid var(--meeting-card-border);
+    border-radius:10px;
+    padding:14px 18px;
+    margin:0 0 14px;
+  }
+  .meeting-card-header{
+    display:flex;align-items:baseline;gap:10px;margin:0 0 10px;
+  }
+  .meeting-date{
+    font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;
+  }
+  .meeting-title{
+    font-size:14px;font-weight:700;color:var(--ink);
+  }
+  .meeting-section-label{
+    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--muted);margin:8px 0 4px;
+  }
+  .meeting-points{
+    margin:0 0 8px;padding-left:18px;font-size:13px;color:var(--ink);
+  }
+  .meeting-points li{margin:2px 0}
+  .meeting-decisions{
+    background:var(--meeting-decision-bg);
+    border:1px solid var(--meeting-decision-border);
+    border-radius:6px;
+    padding:8px 12px 8px 14px;
+    margin:0;
+    list-style:none;
+    font-size:13px;
+    color:var(--meeting-decision-ink);
+  }
+  .meeting-decisions li{margin:3px 0;padding-left:18px;position:relative}
+  .meeting-decisions li::before{
+    content:"✓";
+    position:absolute;left:0;font-weight:700;font-size:11px;
+  }
+  .reunioes-subtitle{color:var(--muted);font-size:13px;margin:0 0 20px}
+
+  @media print{
+    /* Force light palette when printing regardless of selected theme */
+    :root, :root[data-theme="dark"]{
+      --ink:#1d1d1f; --muted:#6b6b70; --line:#e2e2e6; --rule:#cfcfd4;
+      --test:#e07a5f; --found:#3d5a80; --rec:#8d6b94; --essay:#2a9d8f;
+      --intv:#e9c46a; --post:#7a8290;
+      --done-label:#aaa; --done-bar:0.42; --done-tint:#e8f5e9;
+      --progress-fill:#2a9d8f; --today-line:#d62828;
+      --gridline:#ededf1;
+      --surface:#ffffff; --surface-alt:#f4f4f6;
+      --note-bg:#fff8e6; --note-border:#f0d98a; --note-text:#7a5b00;
+      --table-head:#f4f4f6;
+      --btn-bg:#ffffff; --btn-hover-bg:#f4f4f6; --btn-hover-ink:#1d1d1f;
+      --track-bg:transparent;
+      --meeting-card-bg:#f9f9fb;
+      --meeting-card-border:#e2e2e6;
+      --meeting-decision-bg:#eaf5f0;
+      --meeting-decision-border:#b8dece;
+      --meeting-decision-ink:#1a6645;
+    }
+    body{margin:0;max-width:none;background:#fff;color:#1d1d1f}
+    .note{break-inside:avoid}
+    .progress-wrap,.reset-btn,.theme-btn{display:none}
+    .tab-nav{display:none}
+    .tab-panel{display:block !important}
+    .tab-panel + .tab-panel{margin-top:32px;border-top:2px solid #e2e2e6;padding-top:24px}
+    .grow.done .bar{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .today-marker{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .meeting-card{break-inside:avoid}
+    .meeting-decisions{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<h1>Bruno Miranda — Cronograma de Aplicação MBA (2026–2027)</h1>
+<p class="sub">Ciclo 2026–2027 · 5 escolas (R1) · versão interativa · gerado em 19/06/2026</p>
+
+<!-- shared header controls — always visible regardless of active tab -->
+<div class="progress-wrap">
+  <span id="progress-label">0 de 0 etapas concluídas</span>
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" id="progress-bar" style="width:0%"></div>
+  </div>
+  <button class="reset-btn" id="reset-btn">Limpar progresso</button>
+  <button class="theme-btn" id="theme-btn">☾ Modo escuro</button>
+</div>
+
+<!-- tab navigation -->
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" role="tab" aria-selected="true"
+          aria-controls="tab-cronograma" id="btn-cronograma"
+          data-tab="cronograma">Cronograma</button>
+  <button class="tab-btn" role="tab" aria-selected="false"
+          aria-controls="tab-reunioes" id="btn-reunioes"
+          data-tab="reunioes">Reuniões</button>
+</nav>
+
+<!-- ===== PANEL: CRONOGRAMA ===== -->
+<section id="tab-cronograma" class="tab-panel active" role="tabpanel" aria-labelledby="btn-cronograma">
+
+<div class="note">
+  <b>Mudança v1 → v2:</b> <span class="out">Columbia J-term</span> e <span class="out">INSEAD</span> saíram; entraram <b>Booth 2Y</b> e <b>MIT Sloan 2Y</b>. Com isso, <b>todo o ciclo se concentra em R1 (set–out 2026)</b> — alivia a pressão de teste em julho, mas <b>concentra a carga de essays em ago–set</b> (4 das 5 escolas com deadline em setembro).
+</div>
+
+<h2>Deadlines (R1) — janela-alvo</h2>
+<table>
+  <tr><th>Escola</th><th>Programa</th><th>R1 (alvo)</th><th>Status data</th></tr>
+  <tr><td>Kellogg</td><td>1Y ou 2Y <span class="tbd">(a definir)</span></td><td>~10 Set 2026</td><td class="tbd">a confirmar</td></tr>
+  <tr><td>NYU Stern</td><td>2Y</td><td>~15 Set 2026</td><td class="tbd">a confirmar</td></tr>
+  <tr><td>Booth</td><td>2Y</td><td>~24 Set 2026</td><td class="tbd">a confirmar (estimativa)</td></tr>
+  <tr><td>MIT Sloan</td><td>2Y</td><td>~29 Set 2026</td><td class="tbd">a confirmar (estimativa)</td></tr>
+  <tr><td>Babson</td><td>~Set 2027 intake</td><td>~21 Out 2026</td><td class="tbd">a confirmar</td></tr>
+</table>
+<p class="sub">As datas de <b>Booth</b> e <b>MIT Sloan</b> são estimativas (R1 histórico ~fim de setembro) — confirmar nos sites oficiais antes de travar a grade.</p>
+
+<h2>Linha do tempo</h2>
+<div class="legend">
+  <span><i class="chip" style="background:var(--test)"></i>Testes</span>
+  <span><i class="chip" style="background:var(--found)"></i>Fundações (goals/CV/storyblocks)</span>
+  <span><i class="chip" style="background:var(--rec)"></i>Recomendações</span>
+  <span><i class="chip" style="background:var(--essay)"></i>Essays por escola</span>
+  <span><i class="chip" style="background:var(--intv)"></i>Entrevistas (se convidado)</span>
+  <span><i class="chip" style="background:var(--post)"></i>Decisões / pós</span>
+  <span>▲ = submissão</span>
+  <span style="color:#888">· Marque as caixas ao concluir cada etapa</span>
+</div>
+
+<div class="gantt">
+  <!-- month header (outside chart-body — no today marker over the month labels) -->
+  <div class="grow ghead">
+    <div class="glabel" style="color:transparent">.</div>
+    <div class="months">
+      <span style="left:0%">Jun</span>
+      <span style="left:12.3%">Jul</span>
+      <span style="left:25%">Ago</span>
+      <span style="left:37.7%">Set</span>
+      <span style="left:50%">Out</span>
+      <span style="left:62.7%">Nov</span>
+      <span style="left:75%">Dez</span>
+      <span style="left:87.7%">Jan</span>
+    </div>
+  </div>
+
+  <!-- chart-body: all task rows + today marker live here -->
+  <div class="chart-body">
+
+    <!-- today marker: absolutely positioned, left calculated relative to chart-body width.
+         chart-body spans the full row (200px label + track). today at 7.4% of track:
+         left = 200px + 7.4% × (100% − 200px) -->
+    <div class="today-marker" aria-hidden="true"></div>
+
+    <!-- TESTING -->
+    <div class="grow" data-task="gmat">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: GMAT">
+        <span class="label-text">GMAT (&#8805;655; T1 15/07, T2 30/07)</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:0%;width:24.2%;background:var(--test)">GMAT<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="toefl">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: TOEFL / Duolingo">
+        <span class="label-text">TOEFL / Duolingo</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:12.3%;width:18.4%;background:var(--test)">TOEFL<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <!-- FOUNDATIONS -->
+    <div class="grow" data-task="goals">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Goals paragraph">
+        <span class="label-text">Goals paragraph (search fund)</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:6.1%;width:11.9%;background:var(--found)">Goals &#182;<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="storyblocks">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Storyblocks">
+        <span class="label-text">Storyblocks</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:9%;width:15.6%;background:var(--found)">Storyblocks<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="cv">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: CV">
+        <span class="label-text">CV (finalizar v2)</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:6.1%;width:9.8%;background:var(--found)">CV<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="transcritos">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Transcritos + tradução">
+        <span class="label-text">Transcritos + tradução</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:6.1%;width:24.6%;background:var(--found)">Acad. records<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <!-- RECS -->
+    <div class="grow" data-task="lor-base">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: LOR planning + master letter">
+        <span class="label-text">LOR planning + master letter</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:6.1%;width:24.6%;background:var(--rec)">Cartas de recomenda&#231;&#227;o<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="lor-escolas">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: LOR split por escola">
+        <span class="label-text">LOR split por escola &#8594; enviar</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:30.7%;width:14.8%;background:var(--rec)">LOR por escola<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <!-- ESSAYS -->
+    <div class="grow" data-task="kellogg-essays">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Kellogg essays">
+        <span class="label-text">Kellogg &#8212; essays</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:25.8%;width:15.6%;background:var(--essay)">Kellogg<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:41.4%">&#9650;<small> 10/9</small></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="nyu-essays">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: NYU Stern essays">
+        <span class="label-text">NYU Stern &#8212; essays</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:25.8%;width:17.6%;background:var(--essay)">NYU<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:43.4%">&#9650;<small> 15/9</small></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="booth-essays">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Booth essays">
+        <span class="label-text">Booth &#8212; essays</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:31.6%;width:15.6%;background:var(--essay)">Booth<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:47.1%">&#9650;<small> ~24/9</small></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="mit-essays">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: MIT Sloan essays">
+        <span class="label-text">MIT Sloan &#8212; essays</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:31.6%;width:17.6%;background:var(--essay)">MIT Sloan<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:49.2%">&#9650;<small> ~29/9</small></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="babson-essays">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Babson essays">
+        <span class="label-text">Babson &#8212; essays</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:40.2%;width:18%;background:var(--essay)">Babson<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:58.2%">&#9650;<small> 21/10</small></div>
+      </div>
+    </div>
+
+    <!-- INTERVIEWS -->
+    <div class="grow" data-task="intv-foundational">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Prep foundational entrevista">
+        <span class="label-text">Prep foundational (entrevista)</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:46.3%;width:7.4%;background:var(--intv);color:#3a2f00">Found.<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="intv-mocks">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Mocks por escola">
+        <span class="label-text">School-specific + mocks (se convidado)</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:53.7%;width:20.9%;background:var(--intv);color:#3a2f00">Mocks por escola<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <!-- POST -->
+    <div class="grow" data-task="decisoes">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Decisões R1">
+        <span class="label-text">Decis&#245;es R1 esperadas</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:69.3%;width:24.2%;background:var(--post)">Decis&#245;es (nov&#8211;jan)<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+    <div class="grow" data-task="final-call">
+      <div class="glabel">
+        <input type="checkbox" aria-label="Concluído: Final call">
+        <span class="label-text">Final call + pr&#243;ximos passos</span>
+      </div>
+      <div class="track">
+        <div class="bar" style="left:80.7%;width:10.7%;background:var(--post)">Final call<span class="done-check">&#10003;</span></div>
+      </div>
+    </div>
+
+  </div><!-- /chart-body -->
+</div><!-- /gantt -->
+
+<h2>Notas de planejamento</h2>
+<ul style="font-size:13px">
+  <li><b>Pico de carga:</b> ago&#8211;set. Kellogg, NYU, Booth e MIT t&#234;m deadline em setembro &#8212; os essays precisam rodar quase em paralelo. Babson (out) d&#225; um respiro de ~1 m&#234;s.</li>
+  <li><b>Reaproveitamento:</b> com a tese <b>search fund</b> &#250;nica e os storyblocks comuns, o goals paragraph e o set de hist&#243;rias servem as 5 escolas &#8212; o trabalho por escola vira adapta&#231;&#227;o, n&#227;o reescrita.</li>
+  <li><b>Recomenda&#231;&#245;es:</b> alinhar os recomendadores para a janela de setembro (todas as 5 escolas em R1).</li>
+  <li><b>Testes:</b> a meta GMAT &#8805;655 (T1 15/07, T2 30/07) continua; sem deadline de agosto, h&#225; mais folga se precisar pivotar para GRE.</li>
+  <li><b>Pendente:</b> confirmar datas oficiais de Booth e MIT Sloan; definir Kellogg 1Y vs. 2Y.</li>
+</ul>
+
+</section><!-- /tab-cronograma -->
+
+<!-- ===== PANEL: REUNIÕES ===== -->
+<section id="tab-reunioes" class="tab-panel" role="tabpanel" aria-labelledby="btn-reunioes">
+
+<h2>Histórico de reuniões</h2>
+<p class="reunioes-subtitle">Principais encontros, pontos abordados e decisões.</p>
+
+<!-- meeting 9 — newest first -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">16–19/06/2026</span>
+    <span class="meeting-title">Goals "Search Fund" + lista final de escolas</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Nova versão de goals no modelo Search Fund (adquirir e escalar empresas; longo prazo como referência do modelo no Brasil).</li>
+    <li>Revisão final da lista de escolas.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Adotar a narrativa Search Fund como linha principal dos goals.</li>
+    <li>Lista final = Kellogg, Booth, NYU, Babson e MIT Sloan (Columbia e INSEAD fora).</li>
+    <li>Refazer o cronograma com essas 5 escolas.</li>
+  </ul>
+</article>
+
+<!-- meeting 8 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">13/06/2026</span>
+    <span class="meeting-title">Storyline de goals (áudios)</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Proposta de uma linha de goals com IA aplicada a wealth management.</li>
+    <li>Aderência da narrativa à tese pessoal do Bruno.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Seguir testando o setor/narrativa antes de fechar o documento de goals.</li>
+  </ul>
+</article>
+
+<!-- meeting 7 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">05/06/2026</span>
+    <span class="meeting-title">Call de trabalho (~65 min)</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Revisão do CV (foco em resultados, fórmula "X + Y", ângulo de liderança).</li>
+    <li>Discussão de goals (narrativa em 2 estágios).</li>
+    <li>Seleção de recomendadores.</li>
+    <li>Academic records (transcritos + tradução).</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Cravar o cargo sênior (CFO &amp; COO) no CV.</li>
+    <li>Consolidar os goals num único documento.</li>
+    <li>Iniciar a conversa com os recomendadores.</li>
+    <li>Providenciar tradução dos transcritos.</li>
+  </ul>
+</article>
+
+<!-- meeting 6 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">30/05/2026</span>
+    <span class="meeting-title">Personal Brand Exercise</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Revisão do exercício de marca pessoal (visão, propósito, conquistas, momentos definidores).</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Adotar a mensagem-chave "Execução Inabalável" como fio condutor de essays e cartas.</li>
+  </ul>
+</article>
+
+<!-- meeting 5 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">28/05/2026</span>
+    <span class="meeting-title">Áudios de alinhamento (WhatsApp)</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Dúvidas sobre nota de corte dos testes e posicionamento de Babson.</li>
+    <li>Timing de início e de pagamento.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Babson confirmada na lista.</li>
+    <li>Início do processo agendado.</li>
+  </ul>
+</article>
+
+<!-- meeting 4 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">26/05/2026</span>
+    <span class="meeting-title">Primeira sessão de trabalho (vídeo, ~53 min)</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Walkthrough do cronograma de aplicação.</li>
+    <li>Apresentação detalhada de Babson.</li>
+    <li>Status do GMAT.</li>
+    <li>Plano de contingência GMAT → GRE.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Columbia como R2 (R1 já havia passado).</li>
+    <li>Meta de GMAT ~655.</li>
+    <li>Se 2 tentativas oficiais ficarem abaixo do alvo, pivotar para GRE.</li>
+  </ul>
+</article>
+
+<!-- meeting 3 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">19/05/2026</span>
+    <span class="meeting-title">Lista de escolas v1 e cenários (WhatsApp)</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Primeira lista de escolas e cenários de timing.</li>
+    <li>Discussão sobre o timing e o risco de acelerar Columbia.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Priorizar programas de 1 ano / mais curtos.</li>
+    <li>Tratar Real Estate como diferencial, não como foco da escola.</li>
+  </ul>
+</article>
+
+<!-- meeting 2 -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">13/03/2026</span>
+    <span class="meeting-title">Follow-up: Why MBA + drivers</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Aprofundamento do "Why MBA".</li>
+    <li>Primeiro mapa de drivers de decisão.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Empreendedorismo no centro do perfil.</li>
+    <li>Real Estate como complemento (não foco).</li>
+  </ul>
+</article>
+
+<!-- meeting 1 — oldest -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">03/03/2026</span>
+    <span class="meeting-title">Call de introdução</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Apresentação do background pessoal e profissional (trajetória na NAU Capital, família empreendedora).</li>
+    <li>Primeira articulação do "Why MBA".</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Iniciar o processo de candidatura.</li>
+    <li>Aprofundar o "Why MBA" e os drivers de decisão.</li>
+  </ul>
+</article>
+
+</section><!-- /tab-reunioes -->
+
+<script>
+(function(){
+  var STORAGE_KEY = 'bruno-cronograma-v2-progress';
+  var THEME_KEY = 'bruno-cronograma-theme';
+  var TAB_KEY = 'bruno-cronograma-tab';
+
+  /* ---------- theme toggle ---------- */
+  function currentTheme(){
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  }
+
+  function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    var btn = document.getElementById('theme-btn');
+    if(btn){
+      btn.textContent = theme === 'dark' ? '☀ Modo claro' : '☾ Modo escuro';
+    }
+    try{ localStorage.setItem(THEME_KEY, theme); } catch(e){}
+  }
+
+  /* ---------- tabs ---------- */
+  function activateTab(tabId){
+    var panels = document.querySelectorAll('.tab-panel');
+    var buttons = document.querySelectorAll('.tab-btn');
+    panels.forEach(function(p){
+      p.classList.toggle('active', p.id === 'tab-' + tabId);
+    });
+    buttons.forEach(function(b){
+      var isActive = b.dataset.tab === tabId;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    try{ localStorage.setItem(TAB_KEY, tabId); } catch(e){}
+  }
+
+  function restoreTab(){
+    var saved = null;
+    try{ saved = localStorage.getItem(TAB_KEY); } catch(e){}
+    if(saved === 'reunioes'){
+      activateTab('reunioes');
+    } else {
+      activateTab('cronograma');
+    }
+  }
+
+  /* ---------- progress ---------- */
+  function getRows(){
+    return Array.from(document.querySelectorAll('.chart-body .grow[data-task]'));
+  }
+
+  function loadState(){
+    try{ return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+    catch(e){ return {}; }
+  }
+
+  function saveState(state){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e){}
+  }
+
+  function updateProgress(){
+    var rows = getRows();
+    var total = rows.length;
+    var done = rows.filter(function(r){ return r.classList.contains('done'); }).length;
+    var pct = total > 0 ? Math.round(done / total * 100) : 0;
+    document.getElementById('progress-label').textContent =
+      done + ' de ' + total + ' etapas concluídas';
+    document.getElementById('progress-bar').style.width = pct + '%';
+  }
+
+  function applyState(state){
+    getRows().forEach(function(row){
+      var id = row.dataset.task;
+      var cb = row.querySelector('input[type=checkbox]');
+      if(state[id]){
+        row.classList.add('done');
+        cb.checked = true;
+      } else {
+        row.classList.remove('done');
+        cb.checked = false;
+      }
+    });
+    updateProgress();
+  }
+
+  function init(){
+    // set correct button label for current theme (anti-flash script already set data-theme)
+    applyTheme(currentTheme());
+
+    // wire theme button
+    document.getElementById('theme-btn').addEventListener('click', function(){
+      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    });
+
+    // wire tab buttons
+    document.querySelectorAll('.tab-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        activateTab(btn.dataset.tab);
+      });
+    });
+
+    // restore last-active tab
+    restoreTab();
+
+    var state = loadState();
+
+    // wire checkboxes
+    getRows().forEach(function(row){
+      var cb = row.querySelector('input[type=checkbox]');
+      cb.addEventListener('change', function(){
+        var id = row.dataset.task;
+        var s = loadState();
+        if(cb.checked){
+          row.classList.add('done');
+          s[id] = true;
+        } else {
+          row.classList.remove('done');
+          delete s[id];
+        }
+        saveState(s);
+        updateProgress();
+      });
+    });
+
+    // reset button
+    document.getElementById('reset-btn').addEventListener('click', function(){
+      if(confirm('Limpar todo o progresso marcado? Esta ação não pode ser desfeita.')){
+        localStorage.removeItem(STORAGE_KEY);
+        applyState({});
+      }
+    });
+
+    // restore saved progress state
+    applyState(state);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
