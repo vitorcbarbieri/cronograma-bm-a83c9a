@@ -128,9 +128,9 @@
   .today-marker{
     position:absolute;
     /* left is set at runtime by JS (--today-left) from the current date, so the marker
-       moves as days pass. Fallback = Jun 19 (day 18 of the Jun1–Jan31 axis) if JS is off.
-       Axis = days since 2026-06-01 over 244 days. left = 200px + frac * (100% - 200px). */
-    left:var(--today-left, calc(200px + 0.074 * (100% - 200px)));
+       moves as days pass. Fallback = Jun 19 (day 18 of the Jun1–Apr30 axis) if JS is off.
+       Axis = days since 2026-06-01 over 333 days. left = 200px + frac * (100% - 200px). */
+    left:var(--today-left, calc(200px + 0.054 * (100% - 200px)));
     top:0;bottom:0;width:2px;background:var(--today-line);
     pointer-events:none;z-index:10;
   }
@@ -154,14 +154,17 @@
   .track{position:relative;height:22px;border-radius:3px;
     background-color:var(--track-bg);
     background-image:linear-gradient(to right,
-      transparent 0 12.3%, var(--gridline) 12.3% calc(12.3% + 1px),
-      transparent calc(12.3% + 1px) 25%, var(--gridline) 25% calc(25% + 1px),
-      transparent calc(25% + 1px) 37.7%, var(--gridline) 37.7% calc(37.7% + 1px),
-      transparent calc(37.7% + 1px) 50%, var(--gridline) 50% calc(50% + 1px),
-      transparent calc(50% + 1px) 62.7%, var(--gridline) 62.7% calc(62.7% + 1px),
-      transparent calc(62.7% + 1px) 75%, var(--gridline) 75% calc(75% + 1px),
-      transparent calc(75% + 1px) 87.7%, var(--gridline) 87.7% calc(87.7% + 1px),
-      transparent calc(87.7% + 1px) 100%);}
+      transparent 0 9.0%, var(--gridline) 9.0% calc(9.0% + 1px),
+      transparent calc(9.0% + 1px) 18.3%, var(--gridline) 18.3% calc(18.3% + 1px),
+      transparent calc(18.3% + 1px) 27.6%, var(--gridline) 27.6% calc(27.6% + 1px),
+      transparent calc(27.6% + 1px) 36.6%, var(--gridline) 36.6% calc(36.6% + 1px),
+      transparent calc(36.6% + 1px) 45.9%, var(--gridline) 45.9% calc(45.9% + 1px),
+      transparent calc(45.9% + 1px) 55.0%, var(--gridline) 55.0% calc(55.0% + 1px),
+      transparent calc(55.0% + 1px) 64.3%, var(--gridline) 64.3% calc(64.3% + 1px),
+      transparent calc(64.3% + 1px) 73.6%, var(--gridline) 73.6% calc(73.6% + 1px),
+      transparent calc(73.6% + 1px) 82.0%, var(--gridline) 82.0% calc(82.0% + 1px),
+      transparent calc(82.0% + 1px) 91.3%, var(--gridline) 91.3% calc(91.3% + 1px),
+      transparent calc(91.3% + 1px) 100%);}
   .months{position:relative;height:20px}
   .months span{position:absolute;font-size:11px;color:var(--muted);font-weight:600;transform:translateX(2px)}
   .bar{position:absolute;top:3px;height:16px;border-radius:8px;color:#fff;font-size:10.5px;
@@ -256,7 +259,7 @@
 <body>
 
 <h1>Bruno Miranda — Cronograma de Aplicação MBA (2026–2027)</h1>
-<p class="sub">Ciclo 2026–2027 · 5 escolas (R1) · versão interativa · gerado em 19/06/2026</p>
+<p class="sub">Ciclo 2026–2027 · 5 escolas · versão interativa · gerado em 19/06/2026 · atualizado em 04/09/2026 (4 escolas dos EUA movidas para Round 2)</p>
 
 <!-- shared header controls — always visible regardless of active tab -->
 <div class="progress-wrap">
@@ -282,19 +285,19 @@
 <section id="tab-cronograma" class="tab-panel active" role="tabpanel" aria-labelledby="btn-cronograma">
 
 <div class="note">
-  <b>Mudança v1 → v2:</b> <span class="out">Columbia J-term</span> e <span class="out">INSEAD</span> saíram; entraram <b>Booth 2Y</b> e <b>MIT Sloan 2Y</b>. Com isso, <b>todo o ciclo se concentra em R1 (set 2026)</b> — alivia a pressão de teste em julho, mas <b>concentra a carga de essays em ago–set</b>: com as datas oficiais confirmadas, o pico real é <b>9–29 de setembro</b> (4 deadlines em 3 semanas).
+  <b>Mudança v2 → v3:</b> após o GMAT 625 (call de 11/08), a decisão foi <b>não aplicar em R1</b> e mover as <b>4 escolas dos EUA para Round 2</b>: NYU Stern (15/10), Kellogg (6/1), Booth (7/1) e MIT Sloan (12/1). O <b>Melbourne MBA</b> continua mirando o <b>Early Round (~out)</b>. Isso troca o antigo pico único de setembro por <b>duas ondas de carga</b>: <b>outubro</b> (NYU + Melbourne) e <b>início de janeiro</b> (Kellogg, Booth e MIT — 3 deadlines em 1 semana).
 </div>
 
-<h2>Deadlines (R1) — confirmado</h2>
+<h2>Deadlines (rodada-alvo)</h2>
 <table>
-  <tr><th>Escola</th><th>Programa</th><th>R1</th><th>Formato de essays 2026-2027</th></tr>
-  <tr><td>Kellogg</td><td>1Y</td><td>9 Set 2026</td><td>1 essay de 550 palavras (2 partes) + 5 vídeo-essays (60s cada)</td></tr>
-  <tr><td>NYU Stern</td><td>2Y</td><td>15 Set 2026</td><td>Essay 1 (500p) + "Pick Six" (6 imagens) + opcional</td></tr>
-  <tr><td>Booth</td><td>2Y</td><td>15 Set 2026</td><td>4 respostas de 300 caracteres + imagem + fun fact</td></tr>
-  <tr><td>MIT Sloan</td><td>2Y</td><td>29 Set 2026</td><td>Cover letter (300p) + short answer (250p) + 2 vídeos (60s cada)</td></tr>
-  <tr><td>Babson</td><td>~Set 2027 intake</td><td class="tbd">a confirmar</td><td class="tbd">a confirmar</td></tr>
+  <tr><th>Escola</th><th>Programa</th><th>Deadline (rodada-alvo)</th><th>Formato de essays 2026-2027</th></tr>
+  <tr><td>NYU Stern</td><td>2Y</td><td>R2 — 15 Out 2026</td><td>Essay 1 (500p) + "Pick Six" (6 imagens) + opcional</td></tr>
+  <tr><td>Kellogg</td><td>1Y</td><td>R2 — 6 Jan 2027</td><td>1 essay de 550 palavras (2 partes) + 5 vídeo-essays (60s cada)</td></tr>
+  <tr><td>Booth</td><td>2Y</td><td>R2 — 7 Jan 2027</td><td>4 respostas de 300 caracteres + imagem + fun fact</td></tr>
+  <tr><td>MIT Sloan</td><td>2Y</td><td>R2 — 12 Jan 2027</td><td>Cover letter (300p) + short answer (250p) + 2 vídeos (60s cada)</td></tr>
+  <tr><td>Melbourne MBA (MBS)</td><td>Full-time, intake 2027</td><td class="tbd">Early Round ~out 2026 · R1 ~dez 2026 (a confirmar)</td><td class="tbd">a confirmar</td></tr>
 </table>
-<p class="sub">Kellogg, NYU Stern, Booth e MIT Sloan já publicaram deadlines e essays do ciclo 2026-2027 (verificado 19/06/2026). <b>Babson ainda não atualizou</b> — segue com datas do ciclo anterior; a data de outubro usada na linha do tempo abaixo é uma estimativa até a confirmação oficial. Destaque: <b>Booth antecipou o R1 para 15/set</b> (mesmo dia da NYU) — mais cedo do que o histórico recente.</p>
+<p class="sub">Kellogg, NYU Stern, Booth e MIT Sloan já publicaram deadlines e essays do ciclo 2026-2027 (verificado 19/06/2026). Após o resultado do GMAT (625), o Bruno optou por <b>mirar Round 2</b> nas 4 escolas dos EUA (decisão de 11/08/2026): Kellogg, Booth e MIT convergem para a primeira semana de janeiro/2027 e a NYU Stern fica isolada em 15/10/2026. <b>Babson saiu da lista</b> (decisão do Bruno, 25/08/2026) e entrou o <b>Melbourne MBA</b>. O site da MBS ainda mostra apenas o intake de setembro/2026 como encerrado e <b>não publicou as rodadas do intake 2027</b> (verificado 25/08/2026) — as datas de <b>Early Round (~out/2026)</b> e <b>Round 1 (~dez/2026)</b> na linha do tempo são estimativas até confirmação oficial.</p>
 
 <h2>Linha do tempo</h2>
 <div class="legend">
@@ -314,13 +317,16 @@
     <div class="glabel" style="color:transparent">.</div>
     <div class="months">
       <span style="left:0%">Jun</span>
-      <span style="left:12.3%">Jul</span>
-      <span style="left:25%">Ago</span>
-      <span style="left:37.7%">Set</span>
-      <span style="left:50%">Out</span>
-      <span style="left:62.7%">Nov</span>
-      <span style="left:75%">Dez</span>
-      <span style="left:87.7%">Jan</span>
+      <span style="left:9.0%">Jul</span>
+      <span style="left:18.3%">Ago</span>
+      <span style="left:27.6%">Set</span>
+      <span style="left:36.6%">Out</span>
+      <span style="left:45.9%">Nov</span>
+      <span style="left:55.0%">Dez</span>
+      <span style="left:64.3%">Jan</span>
+      <span style="left:73.6%">Fev</span>
+      <span style="left:82.0%">Mar</span>
+      <span style="left:91.3%">Abr</span>
     </div>
   </div>
 
@@ -328,28 +334,29 @@
   <div class="chart-body">
 
     <!-- today marker: absolutely positioned, left calculated relative to chart-body width.
-         chart-body spans the full row (200px label + track). today at 7.4% of track:
-         left = 200px + 7.4% × (100% − 200px) -->
+         chart-body spans the full row (200px label + track). today at 5.4% of track:
+         left = 200px + 5.4% × (100% − 200px) -->
     <div class="today-marker" aria-hidden="true"></div>
 
     <!-- TESTING -->
     <div class="grow" data-task="gmat">
       <div class="glabel">
         <input type="checkbox" aria-label="Concluído: GMAT">
-        <span class="label-text">GMAT (&#8805;655; T1 15/07, T2 30/07)</span>
+        <span class="label-text">GMAT (&#8805;655; retake ~15/09)</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:0%;width:24.2%;background:var(--test)">GMAT<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:0%;width:31.8%;background:var(--test)">GMAT<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:31.8%">&#9650;<small> GMAT ~15/9</small></div>
       </div>
     </div>
 
     <div class="grow" data-task="toefl">
       <div class="glabel">
         <input type="checkbox" aria-label="Concluído: TOEFL / Duolingo">
-        <span class="label-text">TOEFL / Duolingo</span>
+        <span class="label-text">TOEFL / Duolingo (após o GMAT)</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:12.3%;width:18.4%;background:var(--test)">TOEFL<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:33%;width:12%;background:var(--test)">TOEFL<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -360,7 +367,7 @@
         <span class="label-text">Goals paragraph (search fund)</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:6.1%;width:11.9%;background:var(--found)">Goals &#182;<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:4.5%;width:8.7%;background:var(--found)">Goals &#182;<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -370,7 +377,7 @@
         <span class="label-text">Storyblocks</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:9%;width:15.6%;background:var(--found)">Storyblocks<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:6.6%;width:11.4%;background:var(--found)">Storyblocks<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -380,7 +387,7 @@
         <span class="label-text">CV (finalizar v2)</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:6.1%;width:9.8%;background:var(--found)">CV<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:4.5%;width:7.2%;background:var(--found)">CV<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -390,7 +397,7 @@
         <span class="label-text">Transcritos + tradução</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:6.1%;width:24.6%;background:var(--found)">Acad. records<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:4.5%;width:18%;background:var(--found)">Acad. records<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -401,7 +408,7 @@
         <span class="label-text">LOR planning + master letter</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:6.1%;width:24.6%;background:var(--rec)">Cartas de recomenda&#231;&#227;o<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:4.5%;width:18%;background:var(--rec)">Cartas de recomenda&#231;&#227;o<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -411,7 +418,7 @@
         <span class="label-text">LOR split por escola &#8594; enviar</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:30.7%;width:14.8%;background:var(--rec)">LOR por escola<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:22.5%;width:43.2%;background:var(--rec)">LOR por escola (at&#233; in&#237;cio de jan)<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -422,8 +429,8 @@
         <span class="label-text">Kellogg &#8212; essays</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:25.8%;width:15.2%;background:var(--essay)">Kellogg (550p + 5 vídeos)<span class="done-check">&#10003;</span></div>
-        <div class="flag" style="left:41%">&#9650;<small> 9/9</small></div>
+        <div class="bar" style="left:53.2%;width:12.6%;background:var(--essay)">Kellogg 1Y (550p + 5 vídeos)<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:65.8%">&#9650;<small> 6/1</small></div>
       </div>
     </div>
 
@@ -433,8 +440,8 @@
         <span class="label-text">NYU Stern &#8212; essays</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:25.8%;width:17.6%;background:var(--essay)">NYU (Pick Six)<span class="done-check">&#10003;</span></div>
-        <div class="flag" style="left:43.4%">&#9650;<small> 15/9</small></div>
+        <div class="bar" style="left:28.2%;width:12.6%;background:var(--essay)">NYU (Pick Six)<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:40.8%">&#9650;<small> 15/10</small></div>
       </div>
     </div>
 
@@ -444,8 +451,8 @@
         <span class="label-text">Booth &#8212; essays</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:25.8%;width:17.6%;background:var(--essay)">Booth (300 caracteres)<span class="done-check">&#10003;</span></div>
-        <div class="flag" style="left:43.4%">&#9650;<small> 15/9</small></div>
+        <div class="bar" style="left:53.5%;width:12.6%;background:var(--essay)">Booth (300 caracteres)<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:66.1%;top:8px">&#9650;<small> 7/1</small></div>
       </div>
     </div>
 
@@ -455,19 +462,20 @@
         <span class="label-text">MIT Sloan &#8212; essays</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:31.6%;width:17.6%;background:var(--essay)">MIT Sloan (cover letter + 2 vídeos)<span class="done-check">&#10003;</span></div>
-        <div class="flag" style="left:49.2%">&#9650;<small> 29/9</small></div>
+        <div class="bar" style="left:55.0%;width:12.6%;background:var(--essay)">MIT Sloan (cover letter + 2 vídeos)<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:67.6%;top:17px">&#9650;<small> 12/1</small></div>
       </div>
     </div>
 
-    <div class="grow" data-task="babson-essays">
+    <div class="grow" data-task="melbourne-essays">
       <div class="glabel">
-        <input type="checkbox" aria-label="Concluído: Babson essays">
-        <span class="label-text">Babson &#8212; essays</span>
+        <input type="checkbox" aria-label="Concluído: Melbourne MBA application">
+        <span class="label-text">Melbourne MBA &#8212; application</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:40.2%;width:18%;background:var(--essay)">Babson<span class="done-check">&#10003;</span></div>
-        <div class="flag" style="left:58.2%">&#9650;<small> ~21/10</small></div>
+        <div class="bar" style="left:27.6%;width:13.2%;background:var(--essay)">Melbourne (antecipado)<span class="done-check">&#10003;</span></div>
+        <div class="flag" style="left:40.8%">&#9650;<small> Early ~out</small></div>
+        <div class="flag" style="left:59.1%">&#9650;<small> R1 ~dez (fallback)</small></div>
       </div>
     </div>
 
@@ -478,7 +486,7 @@
         <span class="label-text">Prep foundational (entrevista)</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:46.3%;width:7.4%;background:var(--intv);color:#3a2f00">Found.<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:68.5%;width:4.5%;background:var(--intv);color:#3a2f00">Found.<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -488,18 +496,18 @@
         <span class="label-text">School-specific + mocks (se convidado)</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:53.7%;width:20.9%;background:var(--intv);color:#3a2f00">Mocks por escola<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:73.6%;width:12.6%;background:var(--intv);color:#3a2f00">Mocks por escola<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
     <!-- POST -->
     <div class="grow" data-task="decisoes">
       <div class="glabel">
-        <input type="checkbox" aria-label="Concluído: Decisões R1">
-        <span class="label-text">Decis&#245;es R1 esperadas</span>
+        <input type="checkbox" aria-label="Concluído: Decisões R2">
+        <span class="label-text">Decis&#245;es R2 esperadas</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:69.3%;width:24.2%;background:var(--post)">Decis&#245;es (nov&#8211;jan)<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:73.6%;width:21.9%;background:var(--post)">Decis&#245;es R2 (fev&#8211;abr)<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -509,7 +517,7 @@
         <span class="label-text">Final call + pr&#243;ximos passos</span>
       </div>
       <div class="track">
-        <div class="bar" style="left:80.7%;width:10.7%;background:var(--post)">Final call<span class="done-check">&#10003;</span></div>
+        <div class="bar" style="left:95.5%;width:4.5%;background:var(--post)">Final call<span class="done-check">&#10003;</span></div>
       </div>
     </div>
 
@@ -518,13 +526,14 @@
 
 <h2>Notas de planejamento</h2>
 <ul style="font-size:13px">
-  <li><b>Pico de carga:</b> 9&#8211;29 de setembro. Kellogg (9/9), NYU e Booth (15/9, mesmo dia) e MIT (29/9) &#8212; 4 deadlines em 3 semanas, com dois essays simult&#226;neos em 15/9. Babson (out, estimativa) d&#225; um respiro depois.</li>
+  <li><b>Pico de carga (duas ondas):</b> a carga n&#227;o est&#225; mais concentrada num &#250;nico pico de setembro. Agora s&#227;o <b>duas ondas</b>: <b>outubro</b> (NYU Stern 15/10 e Melbourne mirando o Early Round ~out) e <b>in&#237;cio de janeiro</b> (Kellogg 6/1, Booth 7/1 e MIT Sloan 12/1 &#8212; 3 deadlines em 1 semana).</li>
   <li><b>Peso de v&#237;deo alto:</b> Kellogg pede 5 v&#237;deo-essays e MIT pede 2 &#8212; priorizar mocks de v&#237;deo/entrevista em ingl&#234;s cedo no calend&#225;rio.</li>
   <li><b>Formatos "micro":</b> Booth exige respostas de <b>300 caracteres</b> e Kellogg um &#250;nico essay de 550 palavras &#8212; a tese de goals precisa estar muito enxuta antes de escrever (mais dif&#237;cil resumir do que expandir).</li>
   <li><b>Reaproveitamento:</b> com a tese <b>search fund</b> &#250;nica e os storyblocks comuns, o goals paragraph e o set de hist&#243;rias servem as 5 escolas &#8212; o trabalho por escola vira adapta&#231;&#227;o, n&#227;o reescrita.</li>
-  <li><b>Recomenda&#231;&#245;es:</b> alinhar os recomendadores para a janela de setembro (todas as 5 escolas em R1).</li>
-  <li><b>Testes:</b> a meta GMAT &#8805;655 (T1 15/07, T2 30/07) continua; sem deadline de agosto, h&#225; mais folga se precisar pivotar para GRE.</li>
-  <li><b>Pendente:</b> confirmar deadline e essays da <b>Babson</b> (ciclo 2026-2027 ainda n&#227;o publicado); definir Kellogg 1Y vs. 2Y.</li>
+  <li><b>Recomenda&#231;&#245;es:</b> as cartas agora precisam ficar prontas at&#233; o in&#237;cio de janeiro (Kellogg/Booth/MIT em R2) &#8212; alinhar os recomendadores para uma janela mais longa, de setembro a dezembro, j&#225; que h&#225; 3 pedidos quase simult&#226;neos; a NYU (15/10) serve de teste piloto do processo.</li>
+  <li><b>Testes:</b> GMAT retake mirado para <b>~15/09</b> (meta &#8805;655, ap&#243;s a nota de 625 e um m&#234;s de imers&#227;o); TOEFL entra <b>depois do GMAT</b> (~final de setembro/outubro).</li>
+  <li><b>Pendente:</b> confirmar as rodadas do <b>Melbourne MBA</b> (intake 2027 ainda n&#227;o publicado no site da MBS) e decidir <b>Early Round (out) vs. Round 1 (dez)</b>; definir Kellogg 1Y vs. 2Y.</li>
+  <li><b>Melbourne fora do ciclo americano:</b> as 4 escolas dos EUA agora fecham entre <b>outubro (NYU)</b> e <b>in&#237;cio de janeiro (Kellogg/Booth/MIT)</b>; a MBS avalia em fluxo cont&#237;nuo, ent&#227;o o alvo continua sendo o <b>Early Round de outubro</b> &#8212; melhor posi&#231;&#227;o para bolsa e material j&#225; reaproveit&#225;vel do trabalho das outras escolas. O <b>R1 de dezembro</b> fica apenas como <b>fallback</b>.</li>
 </ul>
 
 </section><!-- /tab-cronograma -->
@@ -534,6 +543,64 @@
 
 <h2>Histórico de reuniões</h2>
 <p class="reunioes-subtitle">Principais encontros, pontos abordados e decisões.</p>
+
+<!-- meeting 12 — newest first -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">25/08/2026</span>
+    <span class="meeting-title">Austrália / MBS, contato com recrutamento e inglês</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Bruno abriu um novo eixo: aplicar para escola australiana — a conversa girou em torno da Melbourne Business School (MBS).</li>
+    <li>Vitor recebeu material do time de recrutamento da MBS e entrou na lista de e-mails da escola.</li>
+    <li>Racional registrado: em escolas menores, o mesmo time faz recrutamento e avaliação — contato com recrutamento não é neutro, é parte da avaliação.</li>
+    <li>Bruno hesitou em falar diretamente com a escola: quer objetivos estruturados e notas definidas antes de se expor.</li>
+    <li>Why MBA para a MBS é diferente do canônico: a motivação passa a ser mudar-se para o mercado australiano, não o network americano — exige definir indústria e empresa-alvo na Austrália.</li>
+    <li>Inglês: preocupação específica com vocabulário e sotaque australianos, somada ao nervosismo já conhecido em entrevista. Bruno treina ~20 min/dia com um amigo (Claudinho).</li>
+    <li>GMAT: decisão de fazer/refazer o teste; apreensão com erros de tempo em tentativas anteriores.</li>
+    <li>Suporte pessoal: família apoia a tentativa da Austrália; a esposa, Sara, também apoia e possivelmente vai junto.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li>Vitor atua como intermediário com o recrutador da MBS — levanta visto, empregabilidade e feeders mais comuns, e só depois apresenta o Bruno (evita exposição prematura). Perguntas já enviadas; follow-up pendente.</li>
+    <li>Deadline-alvo de 5 de outubro para deixar a application pronta (o resumo da call não identifica de qual escola é a data).</li>
+    <li>A janela até 5/out fica reservada como espaço para uma segunda tentativa de teste, caso a primeira não atinja a nota.</li>
+    <li>Mock de entrevista em inglês (~15 min) agendado para a semana seguinte, com roteiro de perguntas típicas + roteiro específico de MBS; foco em respostas curtas.</li>
+    <li>Bruno trava objetivos e notas antes de qualquer contato direto com recrutamento.</li>
+  </ul>
+</article>
+
+<!-- meeting 11b — newest first -->
+<article class="meeting-card">
+  <div class="meeting-card-header">
+    <span class="meeting-date">11/08/2026</span>
+    <span class="meeting-title">GMAT 625, avaliação de Round 2 e Fuqua</span>
+  </div>
+  <p class="meeting-section-label">Pontos abordados</p>
+  <ul class="meeting-points">
+    <li>Análise do desempenho no GMAT: melhor nota até aqui é 625. Luciana levanta que erros no primeiro bloco teriam derrubado o nível de dificuldade e penalizado o score; Bruno discorda, dizendo que as questões iniciais eram de nível médio-alto.</li>
+    <li>Kellogg 2Y voltou à mesa depois de conversa com um aluno atual: coesão de turma via viagens e apoio a cônjuges pelos "joint ventures". Bruno também declarou preferir Chicago a Nova York, por custo mais sustentável.</li>
+    <li>Duke Fuqua apresentada por Vitor como alternativa 2Y: qualidade de vida no campus, vocação para tecnologia, egressos em Microsoft, SAP e Oracle (concentração em Seattle).</li>
+    <li>Preocupação do Bruno com a falta de um tema único no perfil; Vitor validou a narrativa de empreendedorismo como crível e autêntica, sustentada pelo histórico familiar e pelo planejamento financeiro.</li>
+    <li>Restam 3 tentativas de GMAT das 5 permitidas por ano.</li>
+  </ul>
+  <p class="meeting-section-label">Decisões</p>
+  <ul class="meeting-decisions">
+    <li><b>Não aplicar em R1 com 625</b> — reservar as semanas seguintes exclusivamente ao GMAT e avaliar o cenário de <b>Round 2</b> para Kellogg, NYU, Booth e MIT.</li>
+    <li>Mudar a execução da prova: fazer a <b>seção verbal primeiro</b>, para preservar foco e clareza mental.</li>
+    <li>Marcar o GMAT para <b>~15 de setembro</b>, após um mês de imersão.</li>
+    <li>TOEFL entre <b>15 e 30 de setembro</b> (alvo acima de 100) — exigência da Babson, que saiu da lista em 25/08.</li>
+    <li>Executive Assessment apenas como contingência de fim de ano, se o GMAT não chegar ao alvo.</li>
+    <li>Check-ins <b>quinzenais</b> para acompanhar estudos e aplicações.</li>
+  </ul>
+  <p class="meeting-section-label">Em aberto depois desta call</p>
+  <ul class="meeting-points">
+    <li><b>R1 × R2:</b> o cronograma acima segue montado em R1/setembro. O pivô para R2 decidido aqui não foi propagado — precisa de confirmação antes de replanejar.</li>
+    <li><b>Data do GMAT:</b> ~15/09 nesta call vs. o milestone de 02/09 na linha do tempo.</li>
+    <li><b>Fuqua</b> foi validada mas nunca entrou na lista de escolas.</li>
+  </ul>
+</article>
 
 <!-- meeting 11 — newest first -->
 <article class="meeting-card">
@@ -773,10 +840,10 @@
   function positionToday(){
     var marker = document.querySelector('.today-marker');
     if(!marker) return;
-    // Axis: 2026-06-01 (0%) → 2027-01-31 (100%), matching the month labels.
+    // Axis: 2026-06-01 (0%) → 2027-04-30 (100%), matching the month labels.
     var start = new Date(2026, 5, 1);   // Jun 1 2026
-    var end   = new Date(2027, 0, 31);  // Jan 31 2027
-    var totalDays = Math.round((end - start) / 86400000); // 244
+    var end   = new Date(2027, 3, 30);  // Apr 30 2027
+    var totalDays = Math.round((end - start) / 86400000); // 333
     var now = new Date();
     var frac = (now - start) / (86400000 * totalDays);
     if(frac < 0 || frac > 1){
